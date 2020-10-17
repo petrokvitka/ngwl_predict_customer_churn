@@ -74,3 +74,53 @@ def find_month_categories_first(directory):
     month_categories = pd.DataFrame(pd.concat(all_month_categories, axis = 0, ignore_index = True))
     
     return month_categories
+
+# Now load the information using the above function
+jan_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items01")
+feb_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items02")
+mar_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items03")
+apr_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items04")
+mai_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items05")
+jun_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items06")
+jul_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items07")
+aug_categories = find_month_categories_first("./ngwl-predict-customer-churn/line_items08")
+
+
+########################################################
+### combine all extracted information into one table ###
+########################################################
+
+def create_final_month_report(categories):
+    """
+    This function combines the information about categories wiht the phone_id, user_id, and
+    creates a final pandas DataFrame for each month, that can be used for the further work.
+    :param categories: extracted categories in the previous step
+    :returns: a pandas DataFrame for each month
+    """
+    month = pd.merge(categories, final_table, on = "shipment_id")
+    #rearrange the columns
+    cols = month.columns.tolist() #[....., 'phone_id', 'user_id', 'order_id', 'order_state']
+    cols = cols[-4:] + cols[:-4] #['phone_id', 'user_id', 'order_id', 'order_state', ......]
+    month = month[cols]
+    
+    return month
+
+# Now use the created function to create tables
+jan = create_final_month_report(jan_categories)
+feb = create_final_month_report(feb_categories)
+mar = create_final_month_report(mar_categories)
+apr = create_final_month_report(apr_categories)
+mai = create_final_month_report(mai_categories)
+jun = create_final_month_report(jun_categories)
+jul = create_final_month_report(jul_categories)
+aug = create_final_month_report(aug_categories)
+
+# Save generated data to .csv files
+jan.to_csv("./jan.csv", index=False)
+feb.to_csv("./feb.csv", index=False)
+mar.to_csv("./mar.csv", index=False)
+apr.to_csv("./apr.csv", index=False)
+mai.to_csv("./mai.csv", index=False)
+jun.to_csv("./jun.csv", index=False)
+jul.to_csv("./jul.csv", index=False)
+aug.to_csv("./aug.csv", index=False)
