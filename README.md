@@ -1,3 +1,5 @@
+![Alt Text](https://github.com/petrokvitka/ngwl_predict_customer_churn/blob/main/peach_team_logo.gif)
+
 # Peach team Predicting customer churn for NGWL Hackathon
 
 This is the code we use to generate our submission.
