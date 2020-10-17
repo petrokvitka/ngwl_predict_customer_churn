@@ -11,7 +11,7 @@ First, the script ``extract_categories.py`` is used to detect in future the conn
 
 Second, Женя
 
-Finally, Аня
+Finally, Аня ``anna_notebook.py``
 
 And the data is merged together.
 
