@@ -9,14 +9,6 @@ This is the code we use to generate our submission.
 The preprocessing of the data is done in three steps, whereas in each step the aim is to create a table with phone_id and corresponding information, such as other ids, extracted data or custom features.
 First, the script ``extract_categories.py`` is used to detect in future the connections between likelihood of purchasing an item and belonging of this item to a certain category.
 
-Second, Женя
+Finally, the ``data_merge_and_train.ipynb`` Jupyter notebook is used for the merging the data into one data set and training of models.
 
-Finally, Аня ``anna_notebook.py``
-
-And the data is merged together.
-
-## The next step is to train a model using the generated data
-
-We decided to create several models and evaluate their performance.
-
-.....
+After the data set is created to optimize the training, the features are tested to be expressive or not. This can be done with the Jupyter notebook ``statistical_analysis.ipynb``.
